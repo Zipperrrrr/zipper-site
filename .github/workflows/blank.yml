@@ -1,36 +1,89 @@
-# This is a basic workflow to help you get started with Actions
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Phone } from "lucide-react";
 
-name: CI
+export default function ZipperSite() {
+  return (
+    <div className="font-sans text-gray-800">
+      {/* Header */}
+      <header className="bg-black text-white p-6 flex justify-between items-center">
+        <h1 className="text-3xl font-bold">ZIPPER</h1>
+        <nav className="space-x-4">
+          <a href="#about" className="hover:underline">About</a>
+          <a href="#products" className="hover:underline">Shop</a>
+          <a href="#team" className="hover:underline">Team</a>
+          <a href="#contact" className="hover:underline">Contact</a>
+        </nav>
+      </header>
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+      {/* Hero Section */}
+      <section className="bg-gray-100 p-12 text-center">
+        <img src="/mnt/data/e5056399-7b3a-4c0d-8ba8-0c152046dc73.png" alt="Zipper Logo" className="mx-auto w-40 mb-4" />
+        <h2 className="text-4xl font-bold mb-4">ZIP into Style</h2>
+        <p className="max-w-xl mx-auto text-lg">Discover modern fashion for all ages. Where comfort meets bold design.</p>
+        <Button className="mt-6">Shop Now</Button>
+      </section>
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+      {/* About Section */}
+      <section id="about" className="p-12 bg-white text-center">
+        <h3 className="text-2xl font-bold mb-4">About Us</h3>
+        <p className="max-w-2xl mx-auto">ZIPPER is a modern clothing brand designed for everyone. Our mission is to bring fun, sleek, and comfortable fashion to people of all ages, blending minimalist design with bold personality.</p>
+      </section>
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+      {/* Products Section */}
+      <section id="products" className="p-12 bg-gray-100">
+        <h3 className="text-2xl font-bold text-center mb-8">Featured Products</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {["Zip Hoodie", "Everyday Tee", "Joggers"].map((item, i) => (
+            <Card key={i}>
+              <CardContent className="p-4">
+                <img src={`https://via.placeholder.com/300x200?text=${item}`} alt={item} className="mb-4 w-full h-40 object-cover" />
+                <h4 className="text-lg font-semibold mb-2">{item}</h4>
+                <p className="text-sm">Sleek, comfy, and designed for motion. Perfect for your everyday style.</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      {/* Team Section */}
+      <section id="team" className="p-12 bg-white text-center">
+        <h3 className="text-2xl font-bold mb-6">Meet the Team</h3>
+        <div className="flex justify-center gap-8 flex-wrap">
+          {["Designer", "Marketing", "Founder"].map((role, i) => (
+            <div key={i} className="text-center">
+              <img src="https://via.placeholder.com/100" alt={role} className="rounded-full mb-2" />
+              <p className="font-semibold">{role}</p>
+              <p className="text-sm text-gray-600">Team ZIP</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      {/* Contact Section */}
+      <section id="contact" className="p-12 bg-gray-100">
+        <h3 className="text-2xl font-bold text-center mb-6">Get in Touch</h3>
+        <div className="max-w-xl mx-auto">
+          <div className="flex gap-4 mb-4">
+            <Input placeholder="Your Name" />
+            <Input placeholder="Email" />
+          </div>
+          <Textarea placeholder="Message..." className="mb-4" />
+          <Button>Send Message</Button>
+        </div>
+        <div className="text-center mt-6">
+          <p><Mail className="inline mr-1" /> support@zipperwear.com</p>
+          <p><Phone className="inline mr-1" /> +1 (123) 456-7890</p>
+        </div>
+      </section>
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      {/* Footer */}
+      <footer className="bg-black text-white text-center p-4">
+        <p>&copy; 2025 ZIPPER. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}
